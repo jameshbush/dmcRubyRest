@@ -1,0 +1,2 @@
+class DmdiiQuickLink < ApplicationRecord
+end

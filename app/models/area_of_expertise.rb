@@ -1,0 +1,2 @@
+class AreaOfExpertise < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class DmdiiProject < ApplicationRecord
+end
