@@ -24,6 +24,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.6)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.2)
     activejob (5.1.4)
       activesupport (= 5.1.4)
       globalid (>= 0.3.6)
@@ -38,9 +43,12 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    api-pagination (4.6.3)
     arel (8.0.0)
     builder (3.2.3)
     byebug (9.1.0)
+    case_transform (0.2)
+      activesupport
     concurrent-ruby (1.0.5)
     crass (1.0.2)
     database_cleaner (1.6.1)
@@ -57,6 +65,7 @@ GEM
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.6)
+    jsonapi-renderer (0.1.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -75,8 +84,10 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    pg (0.21.0)
     puma (3.10.0)
     rack (2.0.3)
+    rack-cors (1.0.1)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -138,7 +149,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     thor (0.20.0)
     thread_safe (0.3.6)
     tzinfo (1.2.3)
@@ -146,24 +156,29 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.0)
+  api-pagination
   byebug
   database_cleaner
   factory_girl_rails (~> 4.0)
   faker
   listen (>= 3.0.5, < 3.2)
+  pg (~> 0.21)
   puma (~> 3.7)
+  rack-cors
   rails (~> 5.1.4)
   rspec-rails (~> 3.5)
   shoulda-matchers (~> 3.1)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   tzinfo-data
+  will_paginate
 
 BUNDLED WITH
    1.16.0.pre.3
