@@ -5,37 +5,30 @@ class DmdiiProjectsController < ApplicationController
   def index
     @dmdii_projects = DmdiiProject.all
 
-    render json: @dmdii_projects
+    json_response(@dmdii_projects)
   end
 
   # GET /dmdii_projects/1
   def show
-    render json: @dmdii_project
+    json_response(@dmdii_project)
   end
 
   # POST /dmdii_projects
   def create
-    @dmdii_project = DmdiiProject.new(dmdii_project_params)
-
-    if @dmdii_project.save
-      render json: @dmdii_project, status: :created, location: @dmdii_project
-    else
-      render json: @dmdii_project.errors, status: :unprocessable_entity
-    end
+    @dmdii_project = DmdiiProject.create!(dmdii_project_params)
+    json_response(@dmdii_project, :created)
   end
 
   # PATCH/PUT /dmdii_projects/1
   def update
-    if @dmdii_project.update(dmdii_project_params)
-      render json: @dmdii_project
-    else
-      render json: @dmdii_project.errors, status: :unprocessable_entity
-    end
+    @dmdii_project.update!(dmdii_project_params)
+    json_response(@dmdii_project)
   end
 
   # DELETE /dmdii_projects/1
   def destroy
     @dmdii_project.destroy
+    head :no_content
   end
 
   private

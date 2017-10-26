@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023190926) do
+ActiveRecord::Schema.define(version: 20171025155729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,19 @@ ActiveRecord::Schema.define(version: 20171023190926) do
     t.index ["user_id"], name: "index_dmdii_documents_on_user_id"
   end
 
+  create_table "dmdii_project_focus_areas", force: :cascade do |t|
+    t.text "name"
+  end
+
+  create_table "dmdii_project_statuses", force: :cascade do |t|
+    t.text "name"
+  end
+
+  create_table "dmdii_project_thrusts", force: :cascade do |t|
+    t.text "name"
+    t.text "code"
+  end
+
   create_table "dmdii_project_updates", force: :cascade do |t|
     t.date "date"
     t.string "title"
@@ -98,8 +111,8 @@ ActiveRecord::Schema.define(version: 20171023190926) do
     t.integer "project_number"
     t.decimal "cost_share", precision: 12, scale: 2
     t.decimal "dmdii_funding", precision: 12, scale: 2
-    t.boolean "is_deleted", default: false
-    t.boolean "is_event", default: false
+    t.boolean "is_deleted", default: false, null: false
+    t.boolean "is_event", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -175,6 +188,9 @@ ActiveRecord::Schema.define(version: 20171023190926) do
   add_foreign_key "dmdii_documents", "users"
   add_foreign_key "dmdii_project_updates", "dmdii_projects"
   add_foreign_key "dmdii_project_updates", "users"
+  add_foreign_key "dmdii_projects", "dmdii_project_focus_areas", column: "focus_area_id"
+  add_foreign_key "dmdii_projects", "dmdii_project_statuses", column: "status_id"
+  add_foreign_key "dmdii_projects", "dmdii_project_thrusts", column: "thrust_id"
   add_foreign_key "dmdii_projects", "organizations", column: "organization_dmdii_member_id"
   add_foreign_key "dmdii_projects", "users", column: "principal_investigator_id"
   add_foreign_key "dmdii_projects", "users", column: "principal_point_of_contact_id"

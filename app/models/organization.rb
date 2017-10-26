@@ -3,6 +3,8 @@ class Organization < ApplicationRecord
   has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address
 
+  has_many :dmdii_projects
+
   belongs_to :organization_type, optional: true
 
   #validations

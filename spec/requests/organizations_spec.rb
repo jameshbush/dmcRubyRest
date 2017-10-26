@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Organizations API', type: :request do
   # initialize test data
-  let!(:organizations) { create_list(:organization, 10) }
+  let!(:organizations) { create_list(:organization, 10, dmdii_tier: 1) }
   let(:organization_id) { organizations.first.id }
 
   # Test suite for GET /organizations
@@ -14,6 +14,24 @@ RSpec.describe 'Organizations API', type: :request do
       # Note `json` is a custom helper to parse JSON responses
       expect(json).not_to be_empty
       expect(json["organizations"].size).to eq(10)
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  # Test suite for GET /dmdiiMember
+  describe 'GET /dmdiiMember' do
+    # make HTTP get request
+    before { get '/dmdiiMember' }
+
+    it 'returns DMDII Members as data' do
+      expect(json["data"].size).to eq(10)
+    end
+
+    it 'returns count' do
+      expect(json["count"]).to eq(10)
     end
 
     it 'returns status code 200' do
@@ -41,7 +59,7 @@ RSpec.describe 'Organizations API', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:organization_id) { 100 }
+      let(:organization_id) { 1000 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
