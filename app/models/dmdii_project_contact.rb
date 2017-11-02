@@ -1,0 +1,2 @@
+class DmdiiProjectContact < ApplicationRecord
+end

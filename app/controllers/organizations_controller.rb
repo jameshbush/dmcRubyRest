@@ -32,6 +32,12 @@ class OrganizationsController < ApplicationController
     head :no_content
   end
 
+  # GET organizations/1/contributing_organizations
+  def contributing_projects
+    organization = Organization.find(params[:organization_id])
+    render json: organization.dmdii_projects
+  end
+
   #GET /organizations/dmdii_members
   def dmdii_members
     @members = paginate Organization.where('dmdii_tier is not null')
@@ -51,6 +57,7 @@ class OrganizationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def organization_params
-      params.permit(:name, :description, :type_id, :dmdii_tier, :organization_type_id, address_attributes: [:street1, :street2, :city, :state, :country, :zip])
+      params.permit(:name, :description, :type_id, :dmdii_tier, :organization_type_id,
+      :membership_start_date, :membership_end_date, address_attributes: [:street1, :street2, :city, :state, :country, :zip])
     end
 end
