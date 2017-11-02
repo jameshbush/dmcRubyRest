@@ -4,8 +4,8 @@ class CreateDmdiiProjectUpdates < ActiveRecord::Migration[5.1]
       t.date :date
       t.string :title
       t.text :description
-      t.references :user, foreign_key: true, column: :creator_id
-      t.references :dmdii_project, foreign_key: true, column: :project_id
+      t.references :user, foreign_key: true
+      t.references :dmdii_project, foreign_key: true
       t.text :access_level
       t.boolean :is_deleted
 

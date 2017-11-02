@@ -1,4 +1,4 @@
-class DmdiiProjectsController < ApplicationController
+class DmdiiEventsController < ApplicationController
   before_action :set_dmdii_project, only: [:show, :update, :destroy]
   before_action :set_nested_dmdii_project, only: [:fetch_updates, :fetch_documents, :contributing_organizations]
 

@@ -3,7 +3,7 @@ class RecentUpdatesController < ApplicationController
 
   # GET /recent_updates
   def index
-    @recent_updates = RecentUpdate.all
+    @recent_updates = RecentUpdate.limit(params[:limit])
 
     render json: @recent_updates
   end

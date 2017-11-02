@@ -3,7 +3,7 @@ class DmdiiQuickLinksController < ApplicationController
 
   # GET /dmdii_quick_links
   def index
-    @dmdii_quick_links = DmdiiQuickLink.all
+    @dmdii_quick_links = DmdiiQuickLink.limit(params[:limit]).order(id: :desc)
 
     render json: @dmdii_quick_links
   end

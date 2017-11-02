@@ -2,8 +2,8 @@ class CreateDmdiiProjects < ActiveRecord::Migration[5.1]
   def change
     create_table :dmdii_projects do |t|
       t.integer :status_id
-      t.timestamp :awarded_date
-      t.timestamp :end_date
+      t.date :awarded_date
+      t.date :end_date
       t.string :project_title
       t.text :project_summary
       t.integer :principal_point_of_contact_id
